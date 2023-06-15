@@ -103,23 +103,31 @@ export class StaticSiteCn extends cdk.Stack {
 
     private cnameRecord() {
 
-        if (!this.props.customDomain.isExternalDomain) {
+        if (this.props.customDomain.isExternalDomain) {
+            return;
+        }
 
-            if (!this.props.customDomain.hostedZone) {
-                throw new Error("Must set hostedZone in china region if isExternalDomain is disabled.")
-            }
+        if (!this.props.customDomain.hostedZone) {
+            throw new Error("Must set hostedZone in china region if isExternalDomain is disabled.")
+        }
 
-            const hostedZone = route53.HostedZone.fromLookup(this, "Zone", {
-                domainName: this.props.customDomain.hostedZone,
-            });
+        const hostedZone = route53.HostedZone.fromLookup(this, "Zone", {
+            domainName: this.props.customDomain.hostedZone,
+        });
 
-            new route53.CnameRecord(this, "Cname", {
+        new route53.CnameRecord(this, `Cname`, {
+            zone: hostedZone,
+            domainName: this.cfnDistribution.attrDomainName,
+            recordName: this.domainName
+        });
+
+        this.props.customDomain.alternateNames?.forEach((alternateName, index) => {
+            new route53.CnameRecord(this, `Cname${index}`, {
                 zone: hostedZone,
                 domainName: this.cfnDistribution.attrDomainName,
-                recordName: this.domainName
+                recordName: alternateName
             });
-
-        }
+        });
     }
 
     public get domainName(): string {
@@ -156,6 +164,7 @@ export class StaticSiteCn extends cdk.Stack {
             distributionConfig: {
                 aliases: [
                     this.domainName,
+                    ...(this.props.customDomain.alternateNames ?? [])
                 ],
                 origins: [
                     {
@@ -192,7 +201,6 @@ export class StaticSiteCn extends cdk.Stack {
                     smoothStreaming: false,
                     targetOriginId: this.bucket.bucketName,
                 },
-                comment: 'Live streaming',
                 enabled: true,
                 restrictions: {
                     geoRestriction: {
