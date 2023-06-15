@@ -1,9 +1,6 @@
 {
   "name": "static-site-cn",
-  "version": "0.0.3",
-  "bin": {
-    "cdk": "bin/cdk.js"
-  },
+  "version": "0.0.4",
   "type": "module",
   "main": "./dist/StaticSiteCn.js",
   "exports": "./dist/StaticSiteCn.js",

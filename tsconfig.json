@@ -32,8 +32,9 @@
   },
   "exclude": [
     "node_modules",
-    "cdk.out",
     "**/__tests__/*"
   ],
-  "include": ["lib"],
+  "include": [
+    "lib"
+  ]
 }
