@@ -116,10 +116,14 @@ export class StaticSiteCn extends cdk.Stack {
             new route53.CnameRecord(this, "Cname", {
                 zone: hostedZone,
                 domainName: this.cfnDistribution.attrDomainName,
-                recordName: this.props.customDomain.domainName
+                recordName: this.domainName
             });
 
         }
+    }
+
+    public get domainName(): string {
+        return this.props.customDomain.domainName;
     }
 
     private get sourceDir() {
@@ -151,7 +155,7 @@ export class StaticSiteCn extends cdk.Stack {
 
             distributionConfig: {
                 aliases: [
-                    this.props.customDomain.domainName,
+                    this.domainName,
                 ],
                 origins: [
                     {
