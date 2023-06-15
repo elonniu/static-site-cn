@@ -1,6 +1,6 @@
 {
   "name": "static-site-cn",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "main": "./dist/StaticSiteCn.js",
   "exports": "./dist/StaticSiteCn.js",
@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "release": "npm publish --registry=https://registry.npmjs.org"
+    "release": "npm run build && npm publish --registry=https://registry.npmjs.org"
   },
   "publishConfig": {
     "access": "public"

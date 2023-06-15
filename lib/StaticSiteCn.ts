@@ -69,7 +69,7 @@ export class StaticSiteCn extends cdk.Stack {
                     stdio: "inherit",
                     env: {
                         ...env,
-                        ...props.env
+                        ...props.environment,
                     },
                 });
             } catch (e) {
