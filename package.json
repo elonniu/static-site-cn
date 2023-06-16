@@ -1,11 +1,11 @@
 {
   "name": "static-site-cn",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "type": "module",
-  "main": "./dist/StaticSiteCn.js",
-  "exports": "./dist/StaticSiteCn.js",
+  "main": "./lib/StaticSiteCn.js",
+  "exports": "./lib/StaticSiteCn.js",
   "files": [
-    "dist/**/*"
+    "lib/**/*"
   ],
   "scripts": {
     "build": "tsc",
