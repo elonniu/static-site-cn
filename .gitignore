@@ -9,4 +9,4 @@ cdk.out
 .idea
 .env
 cdk.context.json
-dist/*
+lib/*

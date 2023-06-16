@@ -1,6 +1,6 @@
 {
   "name": "static-site-cn",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "type": "module",
   "main": "./dist/StaticSiteCn.js",
   "exports": "./dist/StaticSiteCn.js",

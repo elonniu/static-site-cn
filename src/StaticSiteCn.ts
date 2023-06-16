@@ -24,7 +24,6 @@ export interface StaticSiteCnProps extends cdk.StackProps {
     };
     path: string;
     indexPage?: string;
-    errorPage?: "redirect_to_index_page" | Omit<string, "redirect_to_index_page">;
     buildCommand?: string;
     buildOutput?: string;
     environment?: Record<string, string>;

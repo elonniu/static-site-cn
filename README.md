@@ -28,5 +28,6 @@ new StaticSiteCn(stack, "Web", {
     },
     buildCommand: "npm i && npm run build",
     buildOutput: "build",
+    // ...
 });
 ```
